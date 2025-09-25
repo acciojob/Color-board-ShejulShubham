@@ -1,168 +1,29 @@
-  const colorNames = [
-        "AliceBlue",
-        "AntiqueWhite",
-        "Aqua",
-        "Aquamarine",
-        "Azure",
-        "Beige",
-        "Bisque",
-        "Black",
-        "BlanchedAlmond",
-        "Blue",
-        "BlueViolet",
-        "Brown",
-        "BurlyWood",
-        "CadetBlue",
-        "Chartreuse",
-        "Chocolate",
-        "Coral",
-        "CornflowerBlue",
-        "Cornsilk",
-        "Crimson",
-        "Cyan",
-        "DarkBlue",
-        "DarkCyan",
-        "DarkGoldenRod",
-        "DarkGray",
-        "DarkGreen",
-        "DarkKhaki",
-        "DarkMagenta",
-        "DarkOliveGreen",
-        "DarkOrange",
-        "DarkOrchid",
-        "DarkRed",
-        "DarkSalmon",
-        "DarkSeaGreen",
-        "DarkSlateBlue",
-        "DarkSlateGray",
-        "DarkTurquoise",
-        "DarkViolet",
-        "DeepPink",
-        "DeepSkyBlue",
-        "DimGray",
-        "DodgerBlue",
-        "FireBrick",
-        "FloralWhite",
-        "ForestGreen",
-        "Fuchsia",
-        "Gainsboro",
-        "GhostWhite",
-        "Gold",
-        "GoldenRod",
-        "Gray",
-        "Green",
-        "GreenYellow",
-        "HoneyDew",
-        "HotPink",
-        "IndianRed",
-        "Indigo",
-        "Ivory",
-        "Khaki",
-        "Lavender",
-        "LavenderBlush",
-        "LawnGreen",
-        "LemonChiffon",
-        "LightBlue",
-        "LightCoral",
-        "LightCyan",
-        "LightGoldenRodYellow",
-        "LightGray",
-        "LightGreen",
-        "LightPink",
-        "LightSalmon",
-        "LightSeaGreen",
-        "LightSkyBlue",
-        "LightSlateGray",
-        "LightSteelBlue",
-        "LightYellow",
-        "Lime",
-        "LimeGreen",
-        "Linen",
-        "Magenta",
-        "Maroon",
-        "MediumAquaMarine",
-        "MediumBlue",
-        "MediumOrchid",
-        "MediumPurple",
-        "MediumSeaGreen",
-        "MediumSlateBlue",
-        "MediumSpringGreen",
-        "MediumTurquoise",
-        "MediumVioletRed",
-        "MidnightBlue",
-        "MintCream",
-        "MistyRose",
-        "Moccasin",
-        "NavajoWhite",
-        "Navy",
-        "OldLace",
-        "Olive",
-        "OliveDrab",
-        "Orange",
-        "OrangeRed",
-        "Orchid",
-        "PaleGoldenRod",
-        "PaleGreen",
-        "PaleTurquoise",
-        "PaleVioletRed",
-        "PapayaWhip",
-        "PeachPuff",
-        "Peru",
-        "Pink",
-        "Plum",
-        "PowderBlue",
-        "Purple",
-        "RebeccaPurple",
-        "Red",
-        "RosyBrown",
-        "RoyalBlue",
-        "SaddleBrown",
-        "Salmon",
-        "SandyBrown",
-        "SeaGreen",
-        "SeaShell",
-        "Sienna",
-        "Silver",
-        "SkyBlue",
-        "SlateBlue",
-        "SlateGray",
-        "Snow",
-        "SpringGreen",
-        "SteelBlue",
-        "Tan",
-        "Teal",
-        "Thistle",
-        "Tomato",
-        "Turquoise",
-        "Violet",
-        "Wheat",
-        "White",
-        "WhiteSmoke",
-        "Yellow",
-        "YellowGreen",
-      ];
-      const container = document.querySelector(".container");
-      const fragment = document.createDocumentFragment();
+      let container = document.getElementById("container");
+      const colors = ["#e74c3c", "#8e44ad", "#3498db", "#e67e22", "#2ecc71"];
 
-      for (let i = 0; i < 800; i++) {
-        const div = document.createElement("div");
-        div.classList.add("square");
+      //create 800 square
+      for (let i = 1; i <= 800; i++) {
+        const square = document.createElement("div");
+        square.classList.add("square");
 
-        div.addEventListener("mouseover", () => {
-          let max = colorNames.length - 1;
+        //on hover
+        square.addEventListener("mouseover", () => setColor(square));
+        square.addEventListener("mouseout", () => delayRemoveColor(square));
 
-          let random = Math.floor(Math.random() * max);
-
-	          div.style.backgroundColor = "#1d1d1d";   
-        });
-
-        div.addEventListener("mouseout", () => {
-          setTimeout(() => {
-            div.style.backgroundColor = "transparent";
-          }, 1000);
-        });
-
-        fragment.appendChild(div);
+        container.appendChild(square);
       }
 
-      container.appendChild(fragment);
+      function setColor(ele) {
+        const color = getRandomColor();
+        ele.style.backgroundColor = color;
+      }
+
+      function delayRemoveColor(ele) {
+        setTimeout(()=>{
+          ele.style.backgroundColor='#1d1d1d';  // fade back after 1s
+        },1000)
+      }
+
+      function getRandomColor() {
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
