@@ -5,7 +5,6 @@
         grid-template-rows: repeat(8, 1fr);
         /* gap: 5px; */
         margin: 10px;
-        background-color: black;
       }
 
       .square {
