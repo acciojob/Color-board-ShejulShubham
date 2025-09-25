@@ -153,7 +153,7 @@
 
           let random = Math.floor(Math.random() * max);
 
-          div.style.backgroundColor = colorNames[random];   
+	          div.style.backgroundColor = "#1d1d1d";   
         });
 
         div.addEventListener("mouseout", () => {
